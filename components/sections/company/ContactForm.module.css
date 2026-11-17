@@ -1,0 +1,109 @@
+.form {
+  display: grid;
+  gap: 16px;
+}
+.title {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
+}
+.row {
+  display: grid;
+  gap: 16px;
+}
+.field {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+}
+.label {
+  font-size: var(--type-caption);
+  font-weight: 600;
+}
+.optional {
+  font-weight: 400;
+  color: var(--text-on-light-muted);
+}
+.control {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-field);
+  background: var(--surface-muted);
+  color: var(--text-on-light);
+  font: inherit;
+  font-size: var(--type-body); /* ≥16px: no zoom on iOS */
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.control:hover {
+  border-color: var(--border-on-light);
+}
+.control:focus,
+.control:focus-visible {
+  outline: none;
+  border-color: var(--color-gold-deep);
+  box-shadow: inset 0 0 0 0.5px var(--color-gold-deep);
+  border-radius: var(--radius-field);
+}
+.invalid .control {
+  border-color: var(--color-oxblood);
+}
+.textarea {
+  min-height: 132px;
+  padding-block: 12px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.error {
+  font-size: var(--type-caption);
+  font-weight: 600;
+  color: var(--color-oxblood);
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 4px;
+}
+.hint {
+  font-size: var(--type-caption);
+  color: var(--text-on-light-muted);
+}
+.hint a,
+.failed a,
+.done a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-gold-deep);
+}
+.failed {
+  padding: 12px 14px;
+  border-radius: var(--radius-field);
+  background: var(--surface-muted);
+  font-size: var(--type-small);
+  color: var(--color-oxblood);
+}
+.done {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding: 24px 22px;
+  border-radius: var(--radius-card);
+  background: var(--surface-muted);
+}
+.doneTitle {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
+}
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}

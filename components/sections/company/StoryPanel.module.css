@@ -1,0 +1,35 @@
+.panel {
+  display: grid;
+  gap: 24px;
+}
+.text {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+.head {
+  margin-bottom: 4px;
+}
+.p {
+  max-width: 62ch;
+  color: var(--text-on-light-muted);
+}
+:global([data-tone="onyx"]) .p {
+  color: var(--text-on-dark-muted);
+}
+.photo {
+  min-height: 300px;
+}
+@media (min-width: 1000px) {
+  .panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+  .reverse .photo {
+    order: -1;
+  }
+  .photo {
+    min-height: 420px;
+  }
+}

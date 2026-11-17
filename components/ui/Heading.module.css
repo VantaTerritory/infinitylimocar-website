@@ -1,0 +1,26 @@
+.heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: inherit;
+}
+.display {
+  font-size: var(--type-display);
+  line-height: 1.04;
+  letter-spacing: var(--tracking-display);
+  font-weight: 400;
+}
+.h1 {
+  font-size: var(--type-h1);
+  line-height: 1.08;
+  letter-spacing: var(--tracking-display);
+}
+.h2 {
+  font-size: var(--type-h2);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-heading);
+}
+.h3 {
+  font-size: var(--type-h3);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-heading);
+}

@@ -1,0 +1,33 @@
+.panel {
+  position: relative;
+  border-radius: var(--radius-panel);
+  padding: var(--panel-pad-y) var(--panel-pad);
+  overflow: clip;
+}
+.compact {
+  padding: 18px var(--panel-pad);
+}
+.none {
+  padding: 0;
+}
+
+.paper {
+  background: var(--surface-light);
+  color: var(--text-on-light);
+}
+.sand {
+  background: var(--surface-muted);
+  color: var(--text-on-light);
+}
+.onyx {
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+}
+.oxblood {
+  background: var(--surface-accent);
+  color: var(--text-on-dark);
+}
+.gold {
+  background: var(--color-gold);
+  color: var(--color-onyx);
+}

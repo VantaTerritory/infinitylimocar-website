@@ -1,0 +1,345 @@
+.row {
+  display: grid;
+  gap: var(--frame-gap);
+}
+.title {
+  margin-bottom: 16px;
+}
+
+/* ─── Airports: arrivals board ─── */
+.airports {
+  position: relative;
+  isolation: isolate;
+}
+.flight {
+  position: absolute;
+  z-index: -1;
+  top: 18px;
+  right: 18px;
+  width: min(28%, 220px);
+  height: auto;
+  overflow: visible;
+  color: var(--accent-on-dark);
+}
+.arc {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-dasharray: 2 7;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+.arcEnd {
+  fill: currentColor;
+  opacity: 0.6;
+}
+.plane {
+  fill: currentColor;
+}
+.boardHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-dark);
+}
+.live {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 0 rgba(234, 206, 112, 0.6);
+  animation: live 2s var(--ease-out) infinite;
+}
+@keyframes live {
+  70%,
+  100% {
+    box-shadow: 0 0 0 8px rgba(234, 206, 112, 0);
+  }
+}
+
+.airportList {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.airport {
+  --tear: 96px; /* x of the perforation, from the left edge */
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 16px 16px 16px 16px;
+  border-radius: 12px;
+  background: var(--color-oxblood-700);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+.airport:hover {
+  background: #6b2c33;
+}
+.airport::before,
+.airport::after {
+  content: "";
+  position: absolute;
+  left: var(--tear);
+  pointer-events: none;
+}
+/* perforation */
+.airport::before {
+  top: 12px;
+  bottom: 12px;
+  border-left: 2px dotted rgba(243, 238, 228, 0.28);
+  transform: translateX(-1px);
+}
+/* notches */
+.airport::after {
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  transform: translateX(-7px);
+  background:
+    radial-gradient(circle at 50% 0, var(--surface-accent) 7px, transparent 7.5px),
+    radial-gradient(circle at 50% 100%, var(--surface-accent) 7px, transparent 7.5px);
+}
+/* Boarding pass: stub | perforation | details. The two notches are cut
+   with the panel color on top and bottom of the tear line. */
+.stub {
+  flex: none;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  width: 64px;
+}
+.stubLabel {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+  opacity: 0.8;
+}
+.code {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--accent-on-dark);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.airport:hover .code {
+  color: var(--color-gold-hover);
+}
+.name {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  font-size: var(--type-caption);
+}
+.name strong {
+  font-weight: 600;
+  color: var(--text-on-dark);
+}
+.desc {
+  color: var(--text-on-dark-muted);
+  line-height: 1.45;
+}
+.arrow {
+  font-size: 13px;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.airport:hover .arrow {
+  transform: translate(2px, -2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .plane,
+  .live {
+    display: none;
+  }
+}
+/* Private aviation + Union Station: same tickets, stacked under the airports. */
+.extras {
+  display: grid;
+  gap: 14px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.extras li {
+  display: grid;
+}
+
+
+
+
+/* ─── Coverage ─── */
+.regions {
+  margin: 0;
+  border-top: 1px solid var(--border-on-light);
+}
+.region {
+  display: grid;
+  gap: 6px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-on-light);
+}
+.region:last-child {
+  border-bottom: 0;
+}
+.region dt {
+  display: grid;
+  gap: 2px;
+}
+.regionName {
+  font-size: var(--type-small);
+  font-weight: 600;
+}
+.mode {
+  font-size: var(--type-caption);
+  color: var(--accent-on-light);
+}
+.region dd {
+  margin: 0;
+  font-size: var(--type-caption);
+  line-height: 1.55;
+  color: var(--text-on-light-muted);
+}
+
+/* ─── Coverage map ─── */
+.coverage {
+  display: flex;
+  flex-direction: column;
+}
+.map {
+  width: 100%;
+  height: auto;
+  margin-top: auto;
+  padding-top: 20px;
+  overflow: visible;
+}
+.land {
+  fill: none;
+  stroke: var(--color-line);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+}
+.routeLine {
+  fill: none;
+  stroke: var(--color-gold-deep);
+  stroke-width: 1;
+  opacity: 0.35;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    stroke-width var(--duration-base) var(--ease-out);
+}
+/* A short dash travels each route, DC → city. */
+.routeFlight {
+  fill: none;
+  stroke: var(--color-gold-deep);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 6 94;
+  stroke-dashoffset: 100;
+  animation: flight 3.6s linear infinite;
+}
+.route:nth-child(3n) .routeFlight {
+  animation-delay: -1.2s;
+}
+.route:nth-child(3n + 1) .routeFlight {
+  animation-delay: -2.4s;
+}
+@keyframes flight {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.city {
+  fill: var(--color-gold-deep);
+  stroke: var(--surface-light);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.cityLabel,
+.hubLabel {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--text-on-light-muted);
+  paint-order: stroke;
+  stroke: var(--surface-light);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  transition: fill var(--duration-base) var(--ease-out);
+}
+.hubLabel {
+  fill: var(--text-on-light);
+}
+.hub {
+  fill: var(--color-onyx);
+  stroke: var(--color-gold);
+  stroke-width: 2.5;
+}
+.hubPulse {
+  fill: none;
+  stroke: var(--color-gold-deep);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hub 2.4s var(--ease-out) infinite;
+}
+@keyframes hub {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+/* Hovering a region row lights its tier on the map. */
+.coverage:has(.region:nth-child(1):hover) .hubGroup .hubPulse {
+  stroke-width: 2;
+}
+.coverage:has(.region:nth-child(2):hover) .route[data-tier="2"],
+.coverage:has(.region:nth-child(3):hover) .route[data-tier="3"] {
+  & .routeLine {
+    opacity: 1;
+    stroke-width: 1.6;
+  }
+  & .city {
+    transform: scale(1.5);
+  }
+  & .cityLabel {
+    fill: var(--accent-on-light);
+  }
+}
+.region {
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .routeFlight,
+  .hubPulse {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .region {
+    grid-template-columns: 160px 1fr;
+    gap: 12px;
+  }
+}
+@media (min-width: 1000px) {
+  .row {
+    grid-template-columns: 518fr 700fr;
+  }
+}

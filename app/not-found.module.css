@@ -1,0 +1,13 @@
+.panel {
+  margin-top: var(--frame-gap);
+  padding-block: clamp(48px, 8vw, 120px);
+}
+.text {
+  margin: 12px 0 24px;
+  color: var(--text-on-light-muted);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

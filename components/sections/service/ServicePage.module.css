@@ -1,0 +1,7 @@
+.stack {
+  display: grid;
+  /* minmax(0,1fr): no grid item may widen the page past the viewport. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--frame-gap);
+  padding-top: var(--frame-gap);
+}

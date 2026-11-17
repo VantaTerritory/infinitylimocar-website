@@ -1,0 +1,330 @@
+.panel {
+  /* Warm gold glow behind the board, from the top-right corner. */
+  background-image: radial-gradient(70% 60% at 100% 0%, rgba(234, 206, 112, 0.09), transparent 70%);
+}
+.board {
+  display: grid;
+  gap: 14px;
+}
+
+/* ─── Tabs (boarding passes) ─── */
+.tabs {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-inline: calc(var(--panel-pad) * -1);
+  padding-inline: var(--panel-pad);
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-on-dark);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-on-dark-muted);
+  font-size: var(--type-small);
+  text-align: left;
+  overflow: hidden;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out);
+}
+.tab:hover {
+  border-color: rgba(243, 238, 228, 0.32);
+  color: var(--text-on-dark);
+}
+.tabActive,
+.tabActive:hover {
+  border-color: var(--color-gold);
+  background: var(--surface-dark-raised);
+  color: var(--text-on-dark);
+}
+.tabIcon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--accent-on-dark);
+}
+.tabRoute {
+  flex: 1;
+  white-space: nowrap;
+}
+.tabArrow {
+  color: var(--accent-on-dark);
+}
+.tabTag {
+  display: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+/* Auto-advance indicator: a gold line filling the bottom of the active tab. */
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--color-gold);
+  transform-origin: left;
+  animation: progress 6.5s linear forwards;
+}
+.board:hover .progress {
+  animation-play-state: paused;
+}
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ─── Route card ─── */
+.stage {
+  display: grid;
+}
+.card {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: var(--radius-card);
+  background: var(--color-ivory);
+  color: var(--text-on-light);
+  visibility: hidden;
+  opacity: 0;
+}
+.cardActive {
+  visibility: visible;
+  opacity: 1;
+  animation: cardIn var(--duration-slow) var(--ease-out-expo);
+}
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-onyx);
+  color: var(--color-gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+.count {
+  font-size: var(--type-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-on-light-muted);
+}
+
+/* Origin ●——○——● destination, with the "car" travelling the dashed line. */
+.route {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 6px;
+}
+.stop {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.stopIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-onyx);
+  color: var(--color-gold);
+}
+.stopIcon svg {
+  width: 28px;
+  height: 28px;
+}
+.stopIconTo {
+  background: var(--color-gold);
+  color: var(--color-onyx);
+}
+.stopLabel {
+  max-width: 120px;
+  font-size: var(--type-caption);
+  font-weight: 600;
+  text-align: center;
+}
+.line {
+  position: relative;
+  height: 2px;
+  margin-bottom: 26px;
+  background: repeating-linear-gradient(90deg, var(--color-gold-deep) 0 6px, transparent 6px 12px);
+}
+.car {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow:
+    0 0 0 4px rgba(234, 206, 112, 0.25),
+    0 0 18px rgba(234, 206, 112, 0.6);
+  animation: drive 2.8s var(--ease-out) infinite;
+}
+@keyframes drive {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 14px);
+    opacity: 0;
+  }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 600;
+  letter-spacing: var(--tracking-heading);
+}
+.summary {
+  margin-top: -8px;
+  max-width: 60ch;
+  font-size: var(--type-body);
+  color: var(--text-on-light-muted);
+}
+.shareLabel {
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+.share {
+  display: grid;
+  gap: 8px 20px;
+  margin: -6px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--type-small);
+}
+.share li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.share li::before {
+  content: "✓";
+  flex: none;
+  color: var(--accent-on-light);
+  font-weight: 700;
+}
+.cardFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-on-light);
+}
+.service {
+  display: grid;
+  font-size: var(--type-caption);
+  color: var(--text-on-light-muted);
+}
+.service strong {
+  font-size: var(--type-small);
+  color: var(--text-on-light);
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.more {
+  font-size: var(--type-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-gold-deep);
+}
+
+@media (min-width: 640px) {
+  .share {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: tabs become a vertical board on the left. */
+@media (min-width: 1000px) {
+  .board {
+    grid-template-columns: minmax(300px, 380px) 1fr;
+    align-items: stretch;
+  }
+  .tabs {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .tabTag {
+    display: inline;
+  }
+  .stopIcon {
+    width: 76px;
+    height: 76px;
+  }
+  .stopIcon svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress,
+  .car {
+    display: none;
+  }
+  .cardActive {
+    animation: none;
+  }
+}

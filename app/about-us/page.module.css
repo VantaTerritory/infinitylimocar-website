@@ -1,0 +1,30 @@
+.facts {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+}
+.facts div {
+  display: grid;
+  gap: 2px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-on-light);
+}
+.facts dt {
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+.facts dd {
+  margin: 0;
+  font-size: var(--type-small);
+}
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}

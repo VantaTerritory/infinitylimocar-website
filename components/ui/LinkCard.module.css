@@ -1,0 +1,61 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--radius-card);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.title {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-heading);
+}
+.text {
+  font-size: var(--type-caption);
+  line-height: 1.45;
+}
+.card:hover .disc {
+  transform: translate(2px, -2px);
+}
+
+.sand {
+  background: var(--surface-muted);
+  color: var(--text-on-light);
+}
+.sand .text,
+.paper .text {
+  color: var(--text-on-light-muted);
+}
+.sand:hover {
+  background: #e9e2d5;
+}
+.paper {
+  background: var(--surface-light);
+  color: var(--text-on-light);
+}
+.onyx {
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+}
+.onyx .text,
+.oxblood .text {
+  color: var(--text-on-dark-muted);
+}
+.onyx:hover {
+  background: var(--color-onyx-800);
+}
+.oxblood {
+  background: var(--color-oxblood-700);
+  color: var(--text-on-dark);
+}

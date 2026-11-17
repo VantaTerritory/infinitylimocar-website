@@ -1,0 +1,210 @@
+.carousel {
+  display: grid;
+  gap: 16px;
+}
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 82%;
+  gap: 12px;
+  margin: 0;
+  padding: 0 0 4px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+.slide {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 14px 20px;
+  border-radius: var(--radius-card);
+  background: var(--surface-muted);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--vehicle-stage);
+}
+.img {
+  object-fit: contain;
+  padding: var(--vehicle-stage-pad);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+.card:hover .img {
+  transform: scale(1.04);
+}
+.name {
+  padding-inline: 4px;
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 600;
+  letter-spacing: var(--tracking-heading);
+  color: var(--accent-on-light);
+}
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+  margin: 0;
+  padding: 0 4px;
+  list-style: none;
+  font-size: var(--type-small);
+  font-weight: 600;
+}
+.specs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--accent-on-light);
+}
+.feature {
+  font-weight: 500;
+  color: var(--text-on-light-muted);
+}
+.feature::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-inline: 6px;
+  border-radius: 50%;
+  background: var(--color-gold-deep);
+}
+
+/* ─── Closing card ─── */
+.more {
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 28px 24px;
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+  background-image: radial-gradient(80% 60% at 80% 10%, rgba(234, 206, 112, 0.12), transparent 70%);
+}
+.moreKicker {
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-dark);
+}
+.moreTitle {
+  font-family: var(--font-display);
+  font-size: var(--type-h2);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-heading);
+}
+.moreList {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--type-small);
+  color: var(--text-on-dark-muted);
+}
+/* CTA pill: on hover an ivory fill sweeps across it from left to right. */
+.moreCta {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 6px 6px 6px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold);
+  color: var(--color-onyx);
+  font-size: var(--type-small);
+  font-weight: 600;
+  overflow: hidden;
+}
+.moreCta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-ivory);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+.more:hover .moreCta::before,
+.more:focus-visible .moreCta::before {
+  transform: scaleX(1);
+}
+.moreCtaDisc {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-onyx);
+  color: var(--color-gold);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.moreCtaDisc svg {
+  display: block;
+}
+.more:hover .moreCtaDisc {
+  transform: rotate(45deg);
+}
+
+/* ─── Arrows ─── */
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.controls button {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(21, 18, 15, 0.22);
+  border-radius: 50%;
+  background: transparent;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+.controls button:hover:not(:disabled) {
+  background: var(--color-onyx);
+  color: var(--color-ivory);
+}
+.controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (min-width: 640px) {
+  .track {
+    grid-auto-columns: calc((100% - 12px) / 2);
+  }
+}
+@media (min-width: 1000px) {
+  .track {
+    grid-auto-columns: calc((100% - 24px) / 3);
+  }
+}

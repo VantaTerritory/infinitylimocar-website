@@ -1,0 +1,9 @@
+.stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--frame-gap);
+  padding-top: var(--frame-gap);
+}
+.note {
+  color: var(--text-on-light-muted);
+}

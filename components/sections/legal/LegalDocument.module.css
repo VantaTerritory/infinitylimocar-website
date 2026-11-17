@@ -1,0 +1,113 @@
+.panel {
+  display: grid;
+  gap: 28px;
+}
+.toc {
+  font-size: var(--type-small);
+}
+.tocTitle {
+  margin-bottom: 10px;
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+.toc ol {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+}
+.toc li {
+  counter-increment: toc;
+}
+.toc a {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  color: var(--text-on-light-muted);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-on-light);
+}
+.toc a:hover {
+  color: var(--text-on-light);
+}
+.body {
+  max-width: 70ch;
+}
+.intro {
+  margin-bottom: 8px;
+  font-size: var(--type-lead);
+  line-height: 1.55;
+}
+.sections {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: sec;
+}
+.section {
+  counter-increment: sec;
+  display: grid;
+  gap: 12px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-on-light);
+  color: var(--text-on-light-muted);
+}
+.section:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.h2 {
+  display: flex;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
+  color: var(--text-on-light);
+  scroll-margin-top: 96px;
+}
+.h2::before {
+  content: counter(sec, decimal-leading-zero);
+  color: var(--accent-on-light);
+}
+.list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 20px;
+}
+.list li::marker {
+  color: var(--accent-on-light);
+}
+.address {
+  font-style: normal;
+  line-height: 1.8;
+}
+.section a {
+  font-weight: 600;
+  color: var(--text-on-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-gold-deep);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 1000px) {
+  .panel {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .toc {
+    position: sticky;
+    top: 110px;
+  }
+}

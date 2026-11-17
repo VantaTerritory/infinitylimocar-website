@@ -1,0 +1,21 @@
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 32px;
+  height: 2px;
+  background: currentColor;
+}
+.onDark {
+  color: var(--accent-on-dark);
+}

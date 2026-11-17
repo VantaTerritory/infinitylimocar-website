@@ -1,0 +1,71 @@
+.row {
+  display: grid;
+  gap: var(--frame-gap);
+}
+.panel {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding-inline: 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
+  font-size: var(--type-caption);
+}
+.more {
+  justify-self: start;
+  font-size: var(--type-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-gold-deep);
+}
+.more:hover {
+  color: var(--accent-on-light);
+}
+.photo {
+  position: relative;
+  min-height: 280px;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}
+.poster,
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.video {
+  object-fit: cover;
+  object-position: 88% 50%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  .row {
+    grid-template-columns: 730fr 486fr;
+  }
+}
+.photo :global(img) {
+  object-position: 88% 50%;
+}
+.badgeStars {
+  color: var(--color-gold-deep);
+  letter-spacing: 1px;
+}

@@ -1,0 +1,95 @@
+.panel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-inline: 20px;
+}
+.label {
+  flex: none;
+  font-size: var(--type-caption);
+  color: var(--text-on-light-muted);
+}
+
+/* Edge fade so logos enter and leave softly. */
+.viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.viewport:hover .track,
+.viewport:focus-within .track {
+  animation-play-state: paused;
+}
+.list {
+  display: flex;
+  align-items: center;
+  gap: clamp(36px, 5vw, 64px);
+  margin: 0;
+  /* Same trailing space as the gap, so both copies are identical in width. */
+  padding: 0 clamp(36px, 5vw, 64px) 0 0;
+  list-style: none;
+}
+.item {
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: auto;
+  height: 44px;
+  object-fit: contain;
+  /* Logos delivered on a white box (NLA, US Chamber) blend into the ivory
+     panel instead of showing a rectangle. Colors stay original. */
+  mix-blend-mode: multiply;
+}
+/* Round seals read smaller than wordmarks at the same height. */
+.seal {
+  height: 60px;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    mask-image: none;
+  }
+  .track {
+    animation: none;
+    width: auto;
+  }
+  .list {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
+    padding: 0;
+  }
+  .list[aria-hidden] {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .panel {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .viewport {
+    width: 100%;
+  }
+  .logo {
+    height: 38px;
+  }
+  .seal {
+    height: 52px;
+  }
+}

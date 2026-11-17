@@ -1,0 +1,33 @@
+.grid {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.card {
+  height: 100%;
+}
+.long {
+  display: none;
+}
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .card {
+    min-height: 156px;
+  }
+  .long {
+    display: inline;
+  }
+  .short {
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

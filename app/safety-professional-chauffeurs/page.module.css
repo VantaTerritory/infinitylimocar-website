@@ -1,0 +1,51 @@
+.split {
+  display: grid;
+  gap: 24px;
+}
+.col {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+.p {
+  max-width: 62ch;
+  color: var(--text-on-light-muted);
+}
+.card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 24px 22px;
+  border-radius: var(--radius-card);
+  background: var(--surface-light);
+}
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
+}
+.credentials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+}
+.credText {
+  font-size: var(--type-small);
+}
+.credText strong {
+  font-weight: 600;
+}
+.credActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media (min-width: 1000px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}

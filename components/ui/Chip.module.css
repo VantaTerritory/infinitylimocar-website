@@ -1,0 +1,42 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding-inline: 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: var(--type-caption);
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+.outline.light {
+  border-color: rgba(21, 18, 15, 0.22);
+  color: var(--text-on-light);
+}
+.outline.dark {
+  border-color: rgba(243, 238, 228, 0.32);
+  color: var(--text-on-dark);
+}
+.outline.gold {
+  border-color: var(--color-gold);
+  color: var(--text-on-dark);
+}
+.filled.light {
+  background: var(--surface-muted);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.filled.dark {
+  background: var(--surface-dark-raised);
+  color: var(--text-on-dark);
+}
+.link.light:hover {
+  border-color: var(--text-on-light);
+}
+.link.dark:hover,
+.link.gold:hover {
+  background: rgba(243, 238, 228, 0.08);
+}

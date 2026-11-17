@@ -1,0 +1,273 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-top: var(--frame-gutter);
+  /* The linen strip behind the bar keeps panels from showing through the gap. */
+  background: linear-gradient(var(--bg-page) 70%, transparent);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 61px;
+  padding: 0 10px 0 24px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-light);
+}
+
+.brand {
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+
+.logoDesktop {
+  display: none;
+  width: auto;
+  height: 52px;
+}
+
+/* ─── Segmented menu ─── */
+.menu {
+  display: none;
+}
+.list {
+  display: flex;
+  gap: 2px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
+}
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 33px;
+  padding-inline: 11px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-size: var(--type-caption);
+  color: var(--text-on-light);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.item:hover {
+  background: rgba(21, 18, 15, 0.06);
+}
+.itemActive,
+.itemActive:hover {
+  background: var(--color-onyx);
+  color: var(--color-ivory);
+}
+.caret {
+  font-size: 9px;
+}
+
+/* ─── Right side ─── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.phone {
+  display: none;
+  font-size: var(--type-caption);
+  font-weight: 600;
+  margin-right: 8px;
+}
+.cta {
+  display: none;
+}
+.roundBtn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-onyx);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 500;
+}
+.burger {
+  background: var(--color-onyx);
+  color: var(--color-ivory);
+}
+.burgerLines,
+.burgerLines::before {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.burgerLines {
+  position: relative;
+  transform: translateY(-3px);
+}
+.burgerLines::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+}
+.burgerOpen {
+  transform: translateY(0) rotate(45deg);
+}
+.burgerOpen::before {
+  top: 0;
+  transform: rotate(-90deg);
+}
+
+/* ─── Mega panel ───
+   Overlay, never in flow: it floats over the page below the bar and must not
+   change the header's height or push the content (Nico, nov-2026). */
+.header > :global(.frame) {
+  position: relative;
+}
+.mega {
+  position: absolute;
+  top: calc(100% + var(--frame-gap));
+  left: var(--frame-gutter);
+  right: var(--frame-gutter);
+  z-index: 1;
+  border-radius: var(--radius-panel);
+  background: var(--surface-light);
+  box-shadow: 0 18px 40px -24px rgba(21, 18, 15, 0.35);
+}
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 24px 32px;
+  padding: 24px 28px 28px;
+}
+.megaTitle {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent-on-light);
+}
+.megaLinks {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--type-small);
+  line-height: 1.35;
+}
+/* Single-group menus (Fleet, About): the list flows in columns. */
+.megaSingle .megaLinks {
+  display: block;
+  columns: 3 200px;
+  column-gap: 32px;
+}
+.megaSingle .megaLinks li {
+  margin-bottom: 7px;
+  break-inside: avoid;
+}
+.megaLinks a,
+.megaTitle {
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.megaLinks a:hover {
+  color: var(--accent-on-light);
+}
+.megaTitle:hover {
+  color: var(--text-on-light);
+}
+
+/* ─── Mobile sheet ─── */
+.sheet {
+  position: fixed;
+  inset: calc(61px + var(--frame-gutter) * 2) 0 0;
+  overflow-y: auto;
+  padding-bottom: 32px;
+  background: var(--bg-page);
+}
+.sheetList {
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  border-radius: var(--radius-panel);
+  background: var(--surface-light);
+}
+.sheetItem + .sheetItem {
+  border-top: 1px solid var(--border-on-light);
+}
+.sheetTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 20px;
+  border: 0;
+  background: none;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: left;
+}
+.sheetSub {
+  display: grid;
+  gap: 16px;
+  padding: 0 20px 18px;
+}
+.sheetSub ul {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  font-size: var(--type-small);
+  color: var(--text-on-light-muted);
+}
+.sheetSubTitle {
+  font-size: var(--type-small);
+  font-weight: 600;
+}
+.sheetActions {
+  display: grid;
+  gap: 10px;
+  margin-top: var(--frame-gap);
+}
+
+@media (min-width: 1100px) {
+  .logoDesktop {
+    display: block;
+  }
+  .logoMobile {
+    display: none;
+  }
+  .menu,
+  .phone,
+  .cta {
+    display: flex;
+  }
+  .roundBtn {
+    display: none;
+  }
+  .sheet {
+    display: none;
+  }
+}
+@media (max-width: 1099px) {
+  .mega {
+    display: none;
+  }
+  .bar {
+    height: 56px;
+    padding-left: 18px;
+    padding-right: 8px;
+  }
+}

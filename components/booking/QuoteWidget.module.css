@@ -1,0 +1,185 @@
+.widget {
+  color: var(--text-on-light);
+}
+
+/* ─── Tabs (desktop) ─── */
+.tabs {
+  display: none;
+  gap: 2px;
+}
+.tab {
+  height: 38px;
+  padding-inline: 14px;
+  border: 0;
+  border-radius: 14px 14px 0 0;
+  background: rgba(21, 18, 15, 0.75);
+  color: var(--text-on-dark);
+  font-size: var(--type-caption);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+.tab:hover {
+  background: rgba(42, 38, 34, 0.9);
+}
+.tabActive,
+.tabActive:hover {
+  background: var(--surface-light);
+  color: var(--text-on-light);
+}
+
+/* ─── Card ─── */
+.card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--surface-light);
+}
+
+.mobileHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.mobileTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.step {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+}
+
+.mobileSelect select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--radius-field);
+  background: var(--color-onyx);
+  color: var(--color-ivory);
+  font-size: var(--type-small);
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-ivory) 50%),
+    linear-gradient(135deg, var(--color-ivory) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 15px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.field {
+  display: grid;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: var(--radius-field);
+  background: var(--surface-muted);
+  cursor: text;
+}
+.wide {
+  grid-column: 1 / -1;
+}
+.label {
+  font-size: 12px;
+  color: var(--text-on-light-muted);
+}
+.field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--type-small);
+  color: var(--text-on-light);
+}
+.field input::placeholder {
+  color: var(--text-on-light);
+  opacity: 0.85;
+}
+/* The field cell shows focus, not the bare input (overrides the global ring). */
+.field input:focus,
+.field input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+.field:focus-within {
+  box-shadow: inset 0 0 0 1.5px var(--color-gold-deep);
+}
+.submit {
+  grid-column: 1 / -1;
+  border-radius: var(--radius-field);
+}
+
+.meta {
+  display: none;
+}
+
+/* ─── Desktop: tabs + single row ─── */
+@media (min-width: 900px) {
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .card {
+    border-top-left-radius: 0;
+  }
+  .mobileHead,
+  .mobileSelect {
+    display: none;
+  }
+  .fields {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) 150px;
+    gap: 0;
+    align-items: stretch;
+  }
+  .field,
+  .wide {
+    grid-column: auto;
+    background: transparent;
+    border-radius: 0;
+    padding: 4px 8px;
+    margin-right: 10px;
+    border-right: 1px solid var(--border-on-light);
+  }
+  .field:nth-of-type(4) {
+    border-right: 0;
+  }
+  .field {
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+  .field {
+    position: relative;
+  }
+  .field:hover {
+    background: rgba(240, 235, 225, 0.5);
+  }
+  /* Focus: gold underline across the cell + label in gold (≥3:1), clearly
+     different from hover. The divider stays straight (no radius here). */
+  .field:focus-within {
+    background: rgba(240, 235, 225, 0.5);
+    box-shadow: inset 0 -2px 0 var(--color-gold-deep);
+  }
+  .field:focus-within .label {
+    color: var(--accent-on-light);
+  }
+  .submit {
+    grid-column: auto;
+    height: 46px;
+    align-self: center;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--text-on-light-muted);
+  }
+}

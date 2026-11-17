@@ -1,0 +1,26 @@
+.disc {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.paper {
+  background: var(--color-paper);
+  color: var(--color-onyx);
+}
+.gold {
+  background: var(--color-gold);
+  color: var(--color-onyx);
+}
+.onyx {
+  background: var(--color-onyx);
+  color: var(--color-gold);
+}
+
+.disc svg,
+.arrow svg {
+  display: block;
+}

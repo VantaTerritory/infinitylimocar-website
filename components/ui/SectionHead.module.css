@@ -1,0 +1,25 @@
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(20px, 2.4vw, 28px);
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 820px;
+}
+.lead {
+  font-size: var(--type-body);
+  color: var(--text-on-light-muted);
+  max-width: 62ch;
+}
+.onDark .lead {
+  color: var(--text-on-dark-muted);
+}
+.action {
+  flex: none;
+}
